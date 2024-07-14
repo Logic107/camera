@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>camera</title>
+    <script type="text/javascript" src="https://unpkg.com/webcam-easy@1.1.1/dist/webcam-easy.min.js"></script>
+</head>
+
+<style>
+
+    video,button,canvas{
+        width: 800px;
+        display: block;
+        margin: auto;
+    }
+    canvas{
+        display: none;
+    }
+
+    #button{
+        margin: 15px;
+    }
+    H1{
+        text-align: center;
+    }
+
+</style>
+
+<body>
+    <H1>ONLINE CAMERA</H1>
+    <div id="camera">
+        <video id="webcam" autoplay ></video>
+        <div id="button">
+            <button  onclick="takepicture()">
+                <a download="">CLICK TO TAKE SNAP AND DOWNLOAD</a>
+        
+            </button>
+            <button onclick="show()">SHOW CLICKED SNAP</button>
+        </div>
+        <canvas id="canvas"></canvas>
+    </div>
+</body>
+
+<script>
+
+    const webcamelement = document.getElementById("webcam")
+    const canvaselement = document.getElementById("canvas")
+    const webcam = new Webcam( webcamelement ,'user', canvaselement)
+    webcam.start()
+
+    function takepicture(){
+        let picture = webcam.snap()
+        document.querySelector("a").href= picture;
+    }
+    
+    function show(){
+        document.getElementById('canvas').style.display ="block"
+    }
+
+</script>
+</html>
